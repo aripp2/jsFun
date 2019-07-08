@@ -24,21 +24,31 @@ const kittyPrompts = {
     
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.filter(function(kitty) {
+        if(kitty.color === 'orange') {
+            return kitty;
+        }
+    });
+        return result.map(function(kitty) {
+        return kitty.name;
+  });
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    //Given an array of kitten objects
+    //I need to get an array of strings that are values of the name property
+    //I am starting with 4 kitten objects and am expecting to only return 2 of their names
   },
 
   sortByAge() {
     // Sort the kitties by their age
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.sort((a, b) => b.age - a.age);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    //Given an array of kitty objects
+    //Need to return an array of the kitties sorted in order by their age
   },
 
   growUp() {
@@ -55,8 +65,12 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.forEach((kitty) => {
+    return kitty.age += 2;
+  })
+  return kitties; {
     return result;
+    }
   }
 };
 
@@ -87,11 +101,23 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = clubs.reduce((acc, club) => {
+      if (! clubs.includes(club.member)) {
+        acc.push(club.member);
+      }
+      return acc;
+    }, []);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Given an array of objects
+    // Each object has 2 properties/keys club and members
+    // Club is a string
+    // Members is an array or strings(names)
+    // Need to create an array with each member as the key
+    // And their value will be an array of clubs they are member of
+    // I need to iterate though the member to create an array without dupicate names
+
   }
 };
 
