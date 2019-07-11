@@ -33,7 +33,21 @@ const scope = {
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // first, we declare 3 global variables, each are strings
+    // next, the function changePerson is declared
+    // then, changePerson is invoked so we move back up to line 7
+    // the functional scope is checked and we declare another function beautifyPerson
+    //  we go to line 8 and check the conditional
+    // since it is true, we go into the block and assign person to 'CardiB'
+    // next beautifyPerson is invoked so we go to line13
+    // we reach our first log A that will have the value of personB which is 'Ben'
+    // then on line 16 we have another conditional, which is true, so we go into the block
+    // personB is reassigned to person which is 'CardiB'
+    // then personC is reassigned to personB, which is 'CardiB'
+    // Now we have our second log B, personC that has a value of 'CardiB'
+    //Next, we go to line 23 where personC is reassigned to the value of personA, 'Paul'
+    // We get to our 3rd log C on line 25, personB 'CardiB'
+    // Finally we get to log D on line 30, personC 'Paul', which was reassigned on line 23
   },
 
   exerciseB() {
@@ -63,11 +77,23 @@ const scope = {
 
     // Log D: number
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{'A': 75}, {'B': 64}, {'C': 64}, {'D': 30}];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // first we have a global variable of number with a value of 30
+    // Next we declare the function numberFunction
+    // numberFunction is invoked on line 76, so we move back up to line 56
+    // number is reassigned to 75
+    // we check the conditional and it true so we go into the block and reassign number to 28
+    // Log A number = 28
+    //we have another function  newNumber declared, not invoked
+    // newNumber is invoked on line 71
+    // inside newNumber, number is reassigned to 64
+    // Log B = 64
+    // Log C = 64
+    // Log D = 30
+    
   },
 
   exerciseC() {
@@ -97,11 +123,15 @@ const scope = {
 
     // Log D: greeting
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{'A': 'Yo'}, {'B': 'Hey'}, {'C': 'Hey'}, {'D': 'Hello'}];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First we declare the global variable greeting with a value of 'Hello'
+    // Next the function greetingFunction is declared, but not yet invoked so we move on
+    // Then greetingFunction is invoked
+    // 
+    // 
   },
 
   exerciseD() {

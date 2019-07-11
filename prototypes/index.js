@@ -24,15 +24,13 @@ const kittyPrompts = {
     
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
-    const result = kitties.filter(function(kitty) {
-        if(kitty.color === 'orange') {
-            return kitty;
-        }
+    const result = kitties.filter((kitty) => {
+      if(kitty.color === 'orange') {
+        return kitty;
+      }
     });
-        return result.map(function(kitty) {
-        return kitty.name;
-  });
-    return result;
+    return result.map((kitty) => kitty.name);
+    // return result;??????????
 
     // Annotation:
     //Given an array of kitten objects
@@ -66,11 +64,9 @@ const kittyPrompts = {
     // ...etc]
 
     const result = kitties.forEach((kitty) => {
-    return kitty.age += 2;
-  })
-  return kitties; {
-    return result;
-    }
+      return kitty.age += 2;
+    });
+    return kitties; 
   }
 };
 
@@ -102,11 +98,14 @@ const clubPrompts = {
     // }
 
     const result = clubs.reduce((acc, club) => {
-      if (! clubs.includes(club.member)) {
-        acc.push(club.member);
-      }
+      club.members.forEach(member => {
+        if (!acc[member]) {
+          acc[member]=[];
+        }
+        acc[member].push(club.club);
+      });
       return acc;
-    }, []);
+    }, {});
     return result;
 
     // Annotation:
@@ -149,7 +148,12 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = mods.map(mod => {
+      return {
+        mod:mod.mod, 
+        studentsPerInstructor:(mod.students/mod.instructors)
+      };
+    });
     return result;
 
     // Annotation:
@@ -184,7 +188,12 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.map(cake => {
+      return {
+        flavor: cake.cakeFlavor,
+        inStock: cake.inStock
+      };
+    });
     return result;
 
     // Annotation:
@@ -212,7 +221,7 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter(cake => cake.inStock > 0);
     return result;
 
     // Annotation:
@@ -223,7 +232,9 @@ const cakePrompts = {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((total, cake) => {
+      return total += cake.inStock;
+    }, 0);
     return result;
 
     // Annotation:
@@ -235,7 +246,14 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((toppings, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!toppings.includes(topping)) {
+          toppings.push(topping);
+        }
+      });
+      return toppings;
+    }, []);
     return result;
 
     // Annotation:
@@ -253,7 +271,16 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((items, cake) => {
+      cake.toppings.forEach(topping => {
+        if (!items[topping]) {
+          items[topping]= 1;
+        } else {
+          items[topping] ++;
+        }
+      });
+      return items;
+    },{});
     return result;
 
     // Annotation:
@@ -288,11 +315,21 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((feRooms, classroom) => {
+      if (classroom.program === 'FE') {
+        feRooms.push(classroom);
+      }
+      return feRooms;
+    }, []);;
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Given an array of objects
+    // Each object has 3 key value pairs
+    // Need to create a new array of objects
+    // I need to iterate through each object to check if the program has a value of FE
+    // If it does the whole object will be added to the new array
+    // beacause I am returning a single array I will do this using the reduce method
   },
 
   totalCapacities() {
@@ -303,21 +340,37 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((capacities, classroom) => {
+        if (classroom.program === 'FE') {
+          capacities['feCapacity'] += classroom.capacity;
+        } else {
+          capacities['beCapacity'] += classroom.capacity;
+        }
+      return capacities;
+    }, {feCapacity: 0, beCapacity: 0});
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // From the given array of objects I need ot create a single object with 2 key value pairs
+    // the keys will be capacity for each program fe/be
+    // the values will be the total capacity for each
+    // reduce method will give me this single object
+    // set up the accumulator as my obj with the expected keys and values of 0
+    // I will iterate through each classroom obj
+    // if the program is fe I will add the capacity value
+    // same for the be program
   },
 
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.sort((a,b) => a.capacity - b.capacity);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Since I need to return the same array, just in a particular order I can use the sort method.
+    // I will us a,b since I am targeting a number value 
+    // then dot notation to specify the sorting to be done on the key of capacity
   }
 };
 
