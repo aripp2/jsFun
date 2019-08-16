@@ -320,7 +320,7 @@ const classPrompts = {
         feRooms.push(classroom);
       }
       return feRooms;
-    }, []);;
+    }, []);
     return result;
 
     // Annotation:
@@ -341,11 +341,11 @@ const classPrompts = {
     // }
 
     const result = classrooms.reduce((capacities, classroom) => {
-        if (classroom.program === 'FE') {
-          capacities['feCapacity'] += classroom.capacity;
-        } else {
-          capacities['beCapacity'] += classroom.capacity;
-        }
+      if (classroom.program === 'FE') {
+        capacities['feCapacity'] += classroom.capacity;
+      } else {
+        capacities['beCapacity'] += classroom.capacity;
+      }
       return capacities;
     }, {feCapacity: 0, beCapacity: 0});
     return result;
@@ -396,11 +396,16 @@ const breweryPrompts = {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.reduce((total, brewery) => {
+      total += brewery.beers.length;
+      return total;
+    }, 0);
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // I need to return a single value, so i want to use the reduce method 
+    // My accumulator will start at zero
+    // for each brewery I can get the lenght of the beer array and add it to my total
   },
 
   getBreweryBeerCount() {
@@ -412,7 +417,12 @@ const breweryPrompts = {
     // ...etc.
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.map(brewery => {
+      return {
+        name: brewery.name,
+        beerCount: brewery.beers.length
+      }
+    });
     return result;
 
     // Annotation:
@@ -423,8 +433,13 @@ const breweryPrompts = {
     // Return the beer which has the highest ABV of all beers
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    // console.log(breweries.beers)
+    // const result = 
+      let beerArray = [];
+      breweries.forEach(brewery => beerArray.push(brewery.beers))
+      let beers = [].concat(...beerArray)
+      beers.sort((a,b) => b.abv - a.abv)
+    return beers[0];
     return result;
 
     // Annotation:
@@ -560,7 +575,7 @@ const bossPrompts = {
     //   { bossName: 'Scar', sidekickLoyalty: 16 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = ;
     return result;
 
     // Annotation:
@@ -722,8 +737,18 @@ const dinosaurPrompts = {
     //   'Jurassic World: Fallen Kingdom': 18
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
-    return result;
+   let keys = Object.keys(dinosaurs);
+  return movies.reduce((acc, movie) => {
+    acc[movie.title] = movie.dinos.reduce((acc2, dino) => {
+      keys.forEach(key => {
+       if (key === dino && dinosaurs[key].isAwesome === true) {
+         acc2++;
+       }
+      })
+      return acc2;
+    }, 0);
+    return acc;
+  }, {});
 
     // Annotation:
     // Write your annotation here as a comment

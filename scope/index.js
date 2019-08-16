@@ -161,11 +161,22 @@ const scope = {
 
     // Log D: greeting
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{A: 'hi'}, {B: 'welcome'}, {C: 'welcome'}, {D: 'howdy'}];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First we declare a global var greeting = 'howdy'
+    // then declare greetingGenerator assigned to a function
+    // next greetingGenerator is invoked
+    // inside the function greeting is assigned to 'hi'
+    // then there is an if statement, it is true so inside the block scope greeting = 'hello'
+    // outside the block we have our first log and look to the function scope to see greeting is 'hi'
+    // we see another function declaration of newGreeting
+    // next newGreeting is invoked
+    // inside the fucntion greeting is reassigned to 'welcome', and can look to the functional scope to do so
+    // the B log will be 'welcome'
+    // outside the newGreeting function and still inside greetingGenerator we have the third log, C that will be 'welcome' since it was reassigned
+    // the lost log D is in the global scope and will be 'howdy'
   },
 
   exerciseE() {
@@ -193,11 +204,22 @@ const scope = {
 
     // Log D: name
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    // WRONG
+
+    const result = [{C: 'Brittany'}, {A: 'Nathaniel'}, {B: 'Nathaniel'}, {D: 'Brittany'}];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // First we declare a global var name = 'Brittany'
+    // Next we have a function declaration of sayName
+    // Then we invoke sayName
+    // inside the fucntion name is assigned to 'Pam'
+    // the first if statement is true so name is reassigned to 'Nathaniel' by looking out to the function scope
+    // the second if statement is also true so name is assigned to 'Brittany' in the block scope using let
+    // still inside the first block scope we hit the first log A and know that name was reassigned to 'Nathaniel' in the function
+    // next we come to the second log B and know that name was reassigned to 'Nathaniel' inside the function
+    // the third log C is outside the function and will look to the global scope and be 'Brittany'
+    // the fourth log D is also in the global scope and will be 'Brittany again'
   },
 
   exerciseF() {
@@ -298,7 +320,7 @@ const scope = {
 
     fn1();
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{A: 4}, {D: 9}, {E: 10}, {B: 9}, {C: 4}];
     return result;
 
     // Annotation:
@@ -370,7 +392,7 @@ const scope = {
     // Log E: sandwich
     // Log F: amandaBynes
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{A: 'ketchup sandwich'}, {D: 'gouda'}, {B: undefined}, {C: 'not a mediocre sandwich'}, {E: 'not a mediocre sandwich'}, {F: 'National Treasure'}];
     return result;
 
     // Annotation:
@@ -449,7 +471,7 @@ const scope = {
 
     // Log D: num
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [{A: 5}, {B: 6}, {C: 'reference error'}, {D: 6}];
     return result;
 
     // Annotation:

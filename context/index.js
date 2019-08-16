@@ -79,6 +79,7 @@ const context = {
     return result;
 
     // Annotation: 
+    // 
     // because nothing is being instanciated with the new keyword, it will look to the global scope
   },
 
@@ -142,10 +143,10 @@ const context = {
 
 
     // What is the value of `this` when we call monopoly.restart()?
-    const result = '';
+    const result = 'global window object';
     return result;
 
-    // Annotation: 
+    // Annotation: ?????????
     // Write your annotation here as a comment
   },
 
@@ -162,11 +163,11 @@ const context = {
     obj.method();
 
     // What is the value of `this` when we call obj.arrowFunction()?
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'obj';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // this is defined during the creation phase because of the arrow function
   },
 
   exerciseI() {  
@@ -258,11 +259,12 @@ const context = {
     }
 
     // What is the value of `this` when we call makeBirdNoise.call(robert);
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'robert';
     return result;
 
     // Annotation: 
-    // Write your annotation here as a comment
+    // call() calls a method and accepts arguments to override the default behavior to define 'this'
+    // when function is called attach the arg to the value of this
   },
 
   exerciseN() {
@@ -315,7 +317,7 @@ const context = {
       }
     };
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = 'global window object';
     return result;
 
     // What is the value of `this` when we call child.scream();
